@@ -1,0 +1,22 @@
+language: node_js
+cache: npm
+
+branches:
+  only:
+    - master
+
+stages:
+  - test
+  - name: release
+    if: branch =~ /^(\d+\.x|master)$/ AND type IN (push)
+
+jobs:
+  include:
+    - stage: test
+      node_js: 12
+    - node_js: 10
+    - node_js: 8
+    - stage: release
+      node_js: lts/*
+      env: semantic-release
+script: npx semantic-release

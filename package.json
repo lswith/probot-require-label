@@ -1,0 +1,37 @@
+{
+  "name": "probot-require-label",
+  "version": "0.1.0",
+  "description": "A Probot that applies a label to issues and/or PRs that do not have any labels matching a regular expression",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "rm -rf lib && jest",
+    "build": "rm -rf lib && tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lswith/probot-require-label.git"
+  },
+  "keywords": [
+    "probot"
+  ],
+  "author": "Luke Swithenbank",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lswith/probot-require-label/issues"
+  },
+  "homepage": "https://github.com/lswith/probot-require-label#readme",
+  "dependencies": {
+    "joi": "^14.3.1",
+    "probot": "^9.2.15",
+    "probot-config": "^1.1.0",
+    "semantic-release": "^15.13.18"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/joi": "^14.3.3",
+    "@types/node": "^12.0.12",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.2"
+  }
+}
