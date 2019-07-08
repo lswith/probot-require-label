@@ -1,9 +1,9 @@
 language: node_js
 cache: npm
-
-branches:
-  only:
-    - master
+node_js:
+  - 8
+  - 10
+  - 12
 
 stages:
   - test
@@ -13,10 +13,10 @@ stages:
 jobs:
   include:
     - stage: test
-      node_js: 12
-    - node_js: 10
-    - node_js: 8
     - stage: release
       node_js: lts/*
-      env: semantic-release
-script: npx semantic-release
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
