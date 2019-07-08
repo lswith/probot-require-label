@@ -32,3 +32,4 @@ If you have suggestions for how this bot could be improved, or want to report a 
 [travis-url]: https://travis-ci.org/lswith/probot-require-label
 [npm-downloads]: https://img.shields.io/npm/dm/probot-require-label.svg?style=flat
 [npm-version]: https://img.shields.io/npm/v/probot-require-label.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/probot-require-label
