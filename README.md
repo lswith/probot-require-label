@@ -1,5 +1,6 @@
 # Require Label Bot
 
+[![Downloads][npm-downloads]][npm-url] [![version][npm-version]][npm-url]
 [![Build Status][travis-status]][travis-url]
 
 A [Probot](https://probot.github.io) bot to make sure that a given label is added
@@ -29,3 +30,5 @@ If you have suggestions for how this bot could be improved, or want to report a 
 
 [travis-status]: https://travis-ci.org/lswith/probot-require-label.svg?branch=master
 [travis-url]: https://travis-ci.org/lswith/probot-require-label
+[npm-downloads]: https://img.shields.io/npm/dm/probot-require-label.svg?style=flat
+[npm-version]: https://img.shields.io/npm/v/probot-require-label.svg?style=flat
