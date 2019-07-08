@@ -7,7 +7,9 @@
     "test": "rm -rf lib && jest",
     "build": "rm -rf lib && tsc -p tsconfig.json",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "start": "probot run ./lib/index.js",
+    "dev": "nodemon --exec \"npm start\""
   },
   "repository": {
     "type": "git",
@@ -29,13 +31,15 @@
     "joi": "^14.3.1",
     "probot": "^9.2.15",
     "probot-config": "^1.1.0",
-    "semantic-release": "^15.13.18"
+    "semantic-release": "^15.13.18",
+    "smee-client": "^1.1.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
     "@types/joi": "^14.3.3",
     "@types/node": "^12.0.12",
     "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.2"
   }
