@@ -13,6 +13,9 @@
     "type": "git",
     "url": "git+https://github.com/lswith/probot-require-label.git"
   },
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "probot"
   ],
