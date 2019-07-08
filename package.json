@@ -5,7 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "rm -rf lib && jest",
-    "build": "rm -rf lib && tsc -p tsconfig.json"
+    "build": "rm -rf lib && tsc -p tsconfig.json",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
