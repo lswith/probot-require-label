@@ -28,3 +28,4 @@ requiredLabels:
 If you have suggestions for how this bot could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
 
 [travis-status]: https://travis-ci.org/lswith/probot-require-label.svg?branch=master
+[travis-url]: https://travis-ci.org/lswith/probot-require-label
