@@ -12,8 +12,8 @@ export async function handle(context: Context,
   let labels: ILabel[] = context.payload.issue.labels;
   const issueNumber = context.issue().number;
 
-  if (! context.payload.issue.label) {
-    // wait 30 seconds as issue was just opened
+  if (! context.payload.label) {
+    // wait as issue was just opened
     await sleep(waitTimeMs);
     // labels are now stale
     labels = [];
