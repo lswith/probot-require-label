@@ -8,7 +8,7 @@ to specific issues when all other labels do not match a regex.
 
 ## Setup
 
-Add a `.github/relabel.yaml` file to your repository and then run the bot against it.
+Add a `.github/relabel.yml` file to your repository and then run the bot against it.
 
 If the config is empty or doesn't exist, the bot will not run.
 
