@@ -13,9 +13,10 @@ Add a `.github/relabel.yml` file to your repository and then run the bot against
 If the config is empty or doesn't exist, the bot will not run.
 
 ```yml
-
-# Config
-
+# This example configuration will add the `needs-area` and `needs-type` labels
+# to any new issues that do not have labels matching `area:.*` or `type:.*`.
+# Once the issue has the `area:.....` label added the `needs-area` label will be 
+# removed from the issue.
 requiredLabels:
     # The missing label which will be added if the regex doesn't match any other labels
   - missingLabel: needs-area
