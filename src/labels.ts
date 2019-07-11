@@ -13,7 +13,10 @@ export function hasMatchingLabel(labels: ILabel[], regex: RegExp): boolean {
   return didLabelMatch;
 }
 
-export function hasMissingLabel(labels: ILabel[], missingLabel: string): boolean {
+export function hasMissingLabel(
+  labels: ILabel[],
+  missingLabel: string
+): boolean {
   let didLabelMatch = false;
   for (const label of labels) {
     if (label.name === missingLabel) {

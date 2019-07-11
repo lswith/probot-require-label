@@ -19,7 +19,7 @@ export const schema = Joi.object().keys({
   requiredLabels: Joi.array().items(
     Joi.object().keys({
       missingLabel: Joi.string(),
-      regex: Joi.string(),
-    }),
-  ),
+      regex: Joi.string()
+    })
+  )
 });
