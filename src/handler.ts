@@ -10,12 +10,20 @@ export async function handle(
   context: Context,
   requiredLabels: ILabelMatch[],
   waitTimeMs: number
-): Promise<void | Error> {
+): Promise<void> {
   let labels: ILabel[] = context.payload.issue.labels;
   const issueNumber = context.issue().number;
+  const owner = context.issue().owner;
+  const repo = context.issue().repo;
+  const logger = context.log.child({
+    owner: owner,
+    repo: repo,
+    app: "probot-require-label"
+  });
 
   if (!context.payload.label) {
     // wait as issue was just opened
+    logger.debug(`waiting ${waitTimeMs}ms`);
     await sleep(waitTimeMs);
     // labels are now stale
     labels = [];
@@ -32,6 +40,7 @@ export async function handle(
           `Couldn't list labels for issue: ${issueNumber}, error: ${err}`
         );
       });
+    logger.debug(`refreshed labels: ${labels}`);
   }
 
   for (const l of requiredLabels) {
@@ -49,6 +58,7 @@ export async function handle(
             `Couldn't add labels for issue: ${issueNumber}, error: ${err}`
           );
         });
+      logger.debug(`added labels ${l.missingLabel}`);
     }
 
     // remove the label when the regex matches and the label is there
@@ -63,6 +73,7 @@ export async function handle(
             `Couldn't remove label: ${l.missingLabel} for issue: ${issueNumber}, error: ${err}`
           );
         });
+      logger.debug(`removed labels: ${l.missingLabel}`);
     }
   }
 }

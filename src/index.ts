@@ -11,24 +11,31 @@ module.exports = async (app: Application) => {
     "issues.unlabeled"
   ];
   const configManager = new ConfigManager<IConfig>("relabel.yml", {}, schema);
-
-  app.log("probot-require-label Loaded!");
+  app.log.info("probot-require-label loaded");
 
   app.on(events, async (context: Context) => {
-    context.log("Grabbing Config");
+    const inumber = context.issue().number;
+    const repo = context.issue().repo;
+    const owner = context.issue().owner;
+
+    const logger = context.log.child({
+      owner: owner,
+      repo: repo,
+      issue: inumber,
+      app: "probot-require-label"
+    });
+    logger.debug("Getting Config");
     const config = await configManager.getConfig(context).catch(err => {
-      context.log.error(err);
+      logger.error(err);
       return {} as IConfig;
     });
     if (config.requiredLabels) {
-      context.log(
-        `Handling issue: ${context.issue().number}, ${context.issue().owner} ${
-          context.issue().repo
-        }`
-      );
+      logger.debug("Config exists");
+      logger.debug(config);
       await handle(context, config.requiredLabels!, 30000).catch(err => {
-        context.log.error(err);
+        logger.error(err);
       });
+      logger.debug("Handled");
     }
   });
 
