@@ -3,8 +3,6 @@ import { ConfigManager } from "./config";
 import { handle } from "./handler";
 import { IConfig, schema } from "./models";
 
-const configManager = new ConfigManager<IConfig>("relabel.yml", {}, schema);
-
 module.exports = async (app: Application) => {
   const events = [
     "issues.opened",
@@ -12,6 +10,9 @@ module.exports = async (app: Application) => {
     "issues.labeled",
     "issues.unlabeled"
   ];
+  const configManager = new ConfigManager<IConfig>("relabel.yml", {}, schema);
+
+  app.log("probot-require-label Loaded!");
 
   app.on(events, async (context: Context) => {
     context.log("Grabbing Config");
