@@ -32,7 +32,11 @@ export async function handle(
   if (labels.length === 0) {
     // refresh labels from github
     await context.github.issues
-      .listLabelsOnIssue(context.issue())
+      .listLabelsOnIssue({
+        repo: repo,
+        owner: owner,
+        issue_number: issueNumber
+      })
       .then(resp => {
         labels = resp.data;
       })
@@ -53,7 +57,12 @@ export async function handle(
       hasMatchingLabel(labels, regex) === false
     ) {
       await context.github.issues
-        .addLabels(context.issue({ labels: [l.missingLabel] }))
+        .addLabels({
+          owner: owner,
+          repo: repo,
+          issue_number: issueNumber,
+          labels: [l.missingLabel]
+        })
         .catch((err: any) => {
           throw new Error(
             `Couldn't add labels for issue: ${issueNumber}, error: ${err}`
@@ -68,7 +77,12 @@ export async function handle(
       hasMatchingLabel(labels, regex)
     ) {
       await context.github.issues
-        .removeLabel(context.issue({ name: l.missingLabel }))
+        .removeLabel({
+          owner: owner,
+          repo: repo,
+          issue_number: issueNumber,
+          name: l.missingLabel
+        })
         .catch((err: any) => {
           throw new Error(
             `Couldn't remove label: ${l.missingLabel} for issue: ${issueNumber}, error: ${err}`
