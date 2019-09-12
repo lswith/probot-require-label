@@ -29,7 +29,7 @@
   "homepage": "https://github.com/lswith/probot-require-label#readme",
   "dependencies": {
     "joi": "^14.3.1",
-    "probot": "^9.2.15",
+    "probot": "^9.4.0",
     "probot-config-manager": "^1.0.1"
   },
   "devDependencies": {
