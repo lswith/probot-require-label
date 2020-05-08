@@ -31,6 +31,18 @@ pulls:
     regex: type:.*
 ```
 
+### Backwards compatibility
+Previous version of the bot will still work with current version, as the schema for the configuration file does not change the structure. So it's possible to upgrade and keep old configuration:
+
+```yaml
+# The old format matches the new one, using a different name
+requiredLabels:
+  - missingLabel: needs-area
+    regex: area:.*
+  - missingLabel: needs-type
+    regex: type:.*
+```
+
 ## Contribute
 
 If you have suggestions for how this bot could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
