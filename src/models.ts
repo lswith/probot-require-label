@@ -6,17 +6,29 @@ export interface ILabelMatch {
 }
 
 export interface IConfig {
-  requiredLabels?: ILabelMatch[];
+  issues?: ILabelMatch[];
+  pulls?: ILabelMatch[];
 }
 
 //
-// requiredLabels:
+// issues:
+// - missingLabel: needs-area
+//   regex: area:.*
+// - missingLabel: needs-type
+//   reqex: type:.*
+// pulls:
 // - missingLabel: needs-area
 //   regex: area:.*
 // - missingLabel: needs-type
 //   reqex: type:.*
 export const schema = Joi.object().keys({
-  requiredLabels: Joi.array().items(
+  issues: Joi.array().items(
+    Joi.object().keys({
+      missingLabel: Joi.string(),
+      regex: Joi.string()
+    })
+  ),
+  pulls: Joi.array().items(
     Joi.object().keys({
       missingLabel: Joi.string(),
       regex: Joi.string()

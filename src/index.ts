@@ -8,7 +8,11 @@ module.exports = async (app: Application) => {
     "issues.opened",
     "issues.reopened",
     "issues.labeled",
-    "issues.unlabeled"
+    "issues.unlabeled",
+    "pull_request.opened",
+    "pull_request.reopened",
+    "pull_request.labeled",
+    "pull_request.unlabeled"
   ];
   const configManager = new ConfigManager<IConfig>("relabel.yml", {}, schema);
   app.log.info("probot-require-label loaded");
@@ -29,10 +33,16 @@ module.exports = async (app: Application) => {
       logger.error(err);
       return {} as IConfig;
     });
-    if (config.requiredLabels) {
+
+    let eventType = config.issues;
+    if ("pull_request" === context.event) {
+      eventType = config.pulls;
+    }
+
+    if (eventType) {
       logger.debug("Config exists");
       logger.debug(config);
-      await handle(context, config.requiredLabels!, 30000).catch(err => {
+      await handle(context, eventType!, 30000).catch(err => {
         logger.error(err);
       });
       logger.debug("Handled");
