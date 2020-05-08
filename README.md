@@ -4,7 +4,7 @@
 [![Build Status][travis-status]][travis-url]
 
 A [Probot](https://probot.github.io) bot to make sure that a given label is added
-to specific issues when all other labels do not match a regex.
+to specific issues and pull requests when all other labels do not match a regex.
 
 ## Setup
 
@@ -14,11 +14,17 @@ If the config is empty or doesn't exist, the bot will not run.
 
 ```yml
 # This example configuration will add the `needs-area` and `needs-type` labels
-# to any new issues that do not have labels matching `area:.*` or `type:.*`.
-# Once the issue has the `area:.....` label added the `needs-area` label will be 
-# removed from the issue.
-requiredLabels:
-    # The missing label which will be added if the regex doesn't match any other labels
+# to any new issue and pull request that do not have labels matching `area:.*` or `type:.*`.
+# Once the issue or the pull request has the `area:.....` label added the `needs-area` label will be 
+# removed from the issue or pull request.
+issues:
+    # The missing label which will be added to issues if the regex doesn't match any other labels
+  - missingLabel: needs-area
+    regex: area:.*
+  - missingLabel: needs-type
+    regex: type:.*
+pulls:
+    # The missing label which will be added to pull requests if the regex doesn't match any other labels
   - missingLabel: needs-area
     regex: area:.*
   - missingLabel: needs-type

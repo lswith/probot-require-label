@@ -11,7 +11,13 @@ export async function handle(
   requiredLabels: ILabelMatch[],
   waitTimeMs: number
 ): Promise<void> {
-  let labels: ILabel[] = context.payload.issue.labels;
+  let labels: ILabel[];
+  if ("pull_request" === context.event) {
+    labels = context.payload.pull_request.labels;
+  } else {
+    labels = context.payload.issue.labels;
+  }
+
   const issueNumber = context.issue().number;
   const owner = context.issue().owner;
   const repo = context.issue().repo;

@@ -1,3 +1,6 @@
-requiredLabels:
+issues:
+  - missingLabel: needs-type
+    regex: type:.*
+pulls:
   - missingLabel: needs-type
     regex: type:.*
