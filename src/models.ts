@@ -8,6 +8,8 @@ export interface ILabelMatch {
 export interface IConfig {
   issues?: ILabelMatch[];
   pulls?: ILabelMatch[];
+  // fallback supoprting backwards compatibility
+  requiredLabels?: ILabelMatch[];
 }
 
 //
@@ -29,6 +31,12 @@ export const schema = Joi.object().keys({
     })
   ),
   pulls: Joi.array().items(
+    Joi.object().keys({
+      missingLabel: Joi.string(),
+      regex: Joi.string()
+    })
+  ),
+  requiredLabels: Joi.array().items(
     Joi.object().keys({
       missingLabel: Joi.string(),
       regex: Joi.string()
