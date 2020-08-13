@@ -46,13 +46,13 @@ module.exports = async (app: Application) => {
       logger.debug("Config exists");
       logger.debug(config);
       await handle(context, eventType!, 30000).catch(err => {
-        logger.error(err);
+        logger.warn(err);
       });
       logger.debug("Handled");
     }
   });
 
   app.on("*", async context => {
-    context.log({ event: context.event, action: context.payload.action });
+    context.log.debug({ event: context.event, action: context.payload.action });
   });
 };
