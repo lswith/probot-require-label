@@ -3,7 +3,7 @@ import { hasMatchingLabel, hasMissingLabel, ILabel } from "./labels";
 import { ILabelMatch } from "./models";
 
 function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export async function handle(
@@ -25,7 +25,7 @@ export async function handle(
     owner: owner,
     repo: repo,
     issue: issueNumber,
-    app: "probot-require-label"
+    app: "probot-require-label",
   });
 
   if (!context.payload.label) {
@@ -41,9 +41,9 @@ export async function handle(
       .listLabelsOnIssue({
         repo: repo,
         owner: owner,
-        issue_number: issueNumber
+        issue_number: issueNumber,
       })
-      .then(resp => {
+      .then((resp) => {
         labels = resp.data;
       })
       .catch((err: any) => {
@@ -67,7 +67,7 @@ export async function handle(
           owner: owner,
           repo: repo,
           issue_number: issueNumber,
-          labels: [l.missingLabel]
+          labels: [l.missingLabel],
         })
         .catch((err: any) => {
           throw new Error(
@@ -87,7 +87,7 @@ export async function handle(
           owner: owner,
           repo: repo,
           issue_number: issueNumber,
-          name: l.missingLabel
+          name: l.missingLabel,
         })
         .catch((err: any) => {
           throw new Error(
