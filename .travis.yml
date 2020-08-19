@@ -6,6 +6,7 @@ node_js:
   - 12
 
 stages:
+  - commitlint
   - lint
   - test
   - name: release
@@ -13,6 +14,9 @@ stages:
 
 jobs:
   include:
+    - stage: commitlint
+      script:
+        - commitlint-travis
     - stage: lint
       script:
         - npm run lint
