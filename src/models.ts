@@ -27,19 +27,19 @@ export const schema = Joi.object().keys({
   issues: Joi.array().items(
     Joi.object().keys({
       missingLabel: Joi.string(),
-      regex: Joi.string()
+      regex: Joi.string(),
     })
   ),
   pulls: Joi.array().items(
     Joi.object().keys({
       missingLabel: Joi.string(),
-      regex: Joi.string()
+      regex: Joi.string(),
     })
   ),
   requiredLabels: Joi.array().items(
     Joi.object().keys({
       missingLabel: Joi.string(),
-      regex: Joi.string()
+      regex: Joi.string(),
     })
-  )
+  ),
 });

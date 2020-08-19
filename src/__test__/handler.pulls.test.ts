@@ -10,7 +10,7 @@ it("adds needs-area label to pull request when a label doesn't match area:.* on 
     context,
     [{ missingLabel: "needs-area", regex: "area:.*" }],
     1
-  ).then(resp => {
+  ).then((resp) => {
     expect(github.labels).toContain("needs-area");
   });
 });
@@ -23,7 +23,7 @@ it("doesn't add needs-area label to the pull request when needs-area label is al
     context,
     [{ missingLabel: "needs-area", regex: "area:.*" }],
     1
-  ).then(resp => {
+  ).then((resp) => {
     expect(github.labels).toEqual(["needs-area"]);
     expect(github.labelsAdded).toEqual([]);
   });
@@ -37,7 +37,7 @@ it("doesn't add needs-area label to the pull request when a label matching area/
     context,
     [{ missingLabel: "needs-area", regex: "area:.*" }],
     1
-  ).then(resp => {
+  ).then((resp) => {
     expect(github.labels).toEqual(["area:test"]);
     expect(github.labelsAdded).toEqual([]);
   });
@@ -55,7 +55,7 @@ it("removes needs-area label on the pull request when a label matching area/.* e
     context,
     [{ missingLabel: "needs-area", regex: "area:.*" }],
     1
-  ).then(resp => {
+  ).then((resp) => {
     expect(github.labels).toEqual(["area:test"]);
     expect(github.labelsRemoved).toEqual(["needs-area"]);
   });
@@ -73,7 +73,7 @@ it("doesn't remove needs-area label on then pull request when a label doesn't ma
     context,
     [{ missingLabel: "needs-area", regex: "area:.*" }],
     1
-  ).then(resp => {
+  ).then((resp) => {
     expect(github.labels).toEqual(["test:test", "needs-area"]);
     expect(github.labelsRemoved).toEqual([]);
   });

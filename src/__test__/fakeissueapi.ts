@@ -16,9 +16,9 @@ export class FakeIssueApi {
   }) {
     this.top.labelsAdded.push(...params.labels);
     this.top.labels.push(...params.labels);
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       resolve({
-        data: []
+        data: [],
       });
     });
   }
@@ -30,12 +30,12 @@ export class FakeIssueApi {
     name: string;
   }) {
     this.top.labelsRemoved.push(params.name);
-    this.top.labels = this.top.labels.filter(flabel => {
+    this.top.labels = this.top.labels.filter((flabel) => {
       return flabel !== params.name;
     });
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       resolve({
-        data: []
+        data: [],
       });
     });
   }
@@ -45,13 +45,13 @@ export class FakeIssueApi {
     repo: string;
     issue_number: number;
   }) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const labels: ILabel[] = [];
-      this.top.labels.forEach(label => {
+      this.top.labels.forEach((label) => {
         labels.push({ name: label });
       });
       resolve({
-        data: labels
+        data: labels,
       });
     });
   }

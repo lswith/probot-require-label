@@ -12,7 +12,7 @@ module.exports = async (app: Application) => {
     "pull_request.opened",
     "pull_request.reopened",
     "pull_request.labeled",
-    "pull_request.unlabeled"
+    "pull_request.unlabeled",
   ];
   const configManager = new ConfigManager<IConfig>("relabel.yml", {}, schema);
   app.log.info("probot-require-label loaded");
@@ -26,10 +26,10 @@ module.exports = async (app: Application) => {
       owner: owner,
       repo: repo,
       issue: inumber,
-      app: "probot-require-label"
+      app: "probot-require-label",
     });
     logger.debug("Getting Config");
-    const config = await configManager.getConfig(context).catch(err => {
+    const config = await configManager.getConfig(context).catch((err) => {
       logger.error(err);
       return {} as IConfig;
     });
@@ -45,14 +45,14 @@ module.exports = async (app: Application) => {
     if (eventType) {
       logger.debug("Config exists");
       logger.debug(config);
-      await handle(context, eventType!, 30000).catch(err => {
+      await handle(context, eventType!, 30000).catch((err) => {
         logger.warn(err);
       });
       logger.debug("Handled");
     }
   });
 
-  app.on("*", async context => {
+  app.on("*", async (context) => {
     context.log.debug({ event: context.event, action: context.payload.action });
   });
 };
